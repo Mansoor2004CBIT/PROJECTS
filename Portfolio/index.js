@@ -25,7 +25,7 @@ app.use(cors({
 app.use(express.json());
 
 // GET /api/projects
-app.get('/api/projects', (req, res) => {
+app.get('/', (req, res) => {
   const p = path.join(__dirname, 'projects.json');
   try {
     const data = fs.readFileSync(p, 'utf8');
@@ -71,3 +71,4 @@ app.post('/api/contact', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
