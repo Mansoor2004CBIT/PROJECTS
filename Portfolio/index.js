@@ -25,7 +25,13 @@ app.use(cors({
 app.use(express.json());
 
 // GET /api/projects
+// Root route
 app.get('/', (req, res) => {
+  res.send('<h1>Welcome to my Projects API!</h1><p>Go to /api/projects to see projects data.</p>');
+});
+
+// API route
+app.get('/api/projects', (req, res) => {
   const p = path.join(__dirname, 'projects.json');
   try {
     const data = fs.readFileSync(p, 'utf8');
@@ -34,6 +40,7 @@ app.get('/', (req, res) => {
     res.status(500).json([{ title: 'Example', description: 'Demo project' }]);
   }
 });
+
 
 // POST /api/contact
 app.post('/api/contact', async (req, res) => {
@@ -71,4 +78,5 @@ app.post('/api/contact', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
 
